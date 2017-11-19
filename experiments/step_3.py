@@ -24,8 +24,10 @@ class AppForm(QMainWindow):
         self.connect(self.button, SIGNAL("clicked()"), self.clicked)
 
     def clicked(self):
+        # alert on success using this
         QMessageBox.about(self, "My message box", "Text1 = %s, Text2 = %s" % (
             self.edit1.text(), self.edit2.text()))
+
 
 
 
