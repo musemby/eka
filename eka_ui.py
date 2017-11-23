@@ -5,11 +5,6 @@ import time
 from PyQt4.QtGui import QDesktopWidget, QWidget, QApplication, QPushButton, QFileDialog, QLineEdit, QMessageBox, QDialog, QProgressBar, QMainWindow
 
 
-def stub_encrypt():
-    time.sleep(1)
-    return True
-
-
 class Compression(QMainWindow):
     
     def __init__(self):
@@ -36,7 +31,6 @@ class Compression(QMainWindow):
         btn_decrypt.move(250, 200)
         btn_decrypt.clicked.connect(self.pick_decrypt_target_file)
         btn_decrypt.show()
-        # self.prompt_target_file()
 
 
     def centerOnScreen (self):
@@ -80,14 +74,19 @@ class Compression(QMainWindow):
         self.completed = 0
         self.canvas = QWidget()
         self.progress = QProgressBar(self.canvas)
-        # self.progress.setGeometry()
 
         while self.completed < 100:
             self.completed += 0.0001
             self.progress.setValue(self.completed)
 
+########################################################################################################################
+    # These 4 methods are the ones you need to edit to link to the main app
+    # Dependancies - run these commands first
+    # sudo apt-get install python-qt4 libqt4-dev qt4-dev-tools python-qt4-dev pyqt4-dev-tools
+    # to run the program do: python eka_ui.py
+
+
     def compress_file(self, target_file, destination):
-        # self.progress_bar()
         try:
             target = dominus.readbytes(target_file)
             compressed = dominus.compress(target)
@@ -97,7 +96,6 @@ class Compression(QMainWindow):
             raise
 
     def decompress_file(self, target_file, destination):
-        # self.progress_bar()
         try:
             target = dominus.readbytes(target_file)
             compressed = dominus.compress(target)
@@ -113,7 +111,6 @@ class Compression(QMainWindow):
             raise
 
     def encrypt_file(self, target_file, destination):
-        # self.progress_bar()
         try:
             target = dominus.readbytes(target_file)
             compressed = dominus.compress(target)
@@ -123,7 +120,6 @@ class Compression(QMainWindow):
             raise
 
     def decrypt_file(self, target_file, destination):
-        # self.progress_bar()
         try:
             target = dominus.readbytes(target_file)
             compressed = dominus.compress(target)
@@ -137,6 +133,8 @@ class Compression(QMainWindow):
             self.alert_decrypt_success()
         except Exception:
             raise
+
+########################################################################################################################
 
     def alert_progress(self):
         QMessageBox.about(self, "Eka Compress", "Please wait while your file compresses")
